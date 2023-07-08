@@ -1,0 +1,1 @@
+This project is making a clone of wordle for one user using python and a gui
