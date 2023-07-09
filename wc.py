@@ -1,7 +1,10 @@
 import tkinter as tk
+import random
 
 def main():
+    #set up main window
     mainWindow()
+
 
 def mainWindow():   
     #make main window
@@ -20,6 +23,15 @@ def play():
     gameWindow = tk.Tk()
     gameWindow.title('Game Window')
     gameWindow.geometry('500x500')
+
+    #generate word to play with
+    wordLine = random.randint(0, 2314)
+    answersFile = open("/Users/carterwilliams/Coding_Projects/Wordle_Clone/wordle-clone/answers.txt", "r")
+    word = answersFile.readline()
+    for x in range(wordLine):
+        word = answersFile.readline()
+    label = tk.Label(gameWindow, text=word)
+    label.pack()
     
     
 
