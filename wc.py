@@ -24,6 +24,9 @@ def play():
     gameWindow.title('Game Window')
     gameWindow.geometry('500x500')
 
+    #intialize guess number to zero
+    guesses = 0
+
     #generate word to play with
     wordLine = random.randint(0, 2314)
     answersFile = open("/Users/carterwilliams/Coding_Projects/Wordle_Clone/wordle-clone/answers.txt", "r")
@@ -83,6 +86,15 @@ def play():
     r4c4 = tk.LabelFrame(gameWindow, height='40', width='40')
     r4c4.grid(row=4, column=4, padx='10', pady='10')
 
+    #Place guess box
+    guessLabelFrame = tk.LabelFrame(gameWindow)
+    guessLabelFrame.grid(row=0, column=7)
+    guessLabel = tk.Label(guessLabelFrame, text='Enter Guess Below:')
+    guessLabel.pack()
+    guessBox = tk.Entry(gameWindow)
+    guessBox.grid(row=1, column=7)
+
+    
     
     
 
