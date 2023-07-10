@@ -149,13 +149,16 @@ def play():
             #create exit button
             exitButton = tk.Button(gameWindow, text='EXIT', command = gameWindow.destroy)
             exitButton.grid(row = 4, column = 7)
-
-      
-    def testFinalGuess(guesses, guessBox, guessButton):
-        if guesses == 5:
-            guessBox.destroy()
-            guessButton.destory()
-            
+        if guesses == 5 and guess != word:
+            #create loss label
+            lossLabel = tk.Label(gameWindow, text='Maybe next time...')
+            lossLabel.grid(row=3, column=7)
+            #show answer
+            answerLabel = tk.Label(gameWindow, text='The answer was: ' + word)
+            answerLabel.grid(row=4, column = 7)
+            #create exit button
+            exitButton = tk.Button(gameWindow, text='EXIT', command = gameWindow.destroy)
+            exitButton.grid(row = 5, column = 7)
 
     
     #Place guess features
@@ -166,7 +169,7 @@ def play():
     guessBox = tk.Entry(gameWindow)
     guessBox.grid(row=1, column=7)
     print(guesses)
-    guessButton = tk.Button(gameWindow, text='SUBMIT', command = lambda: [testGuess(guessBox.get().lower(), word, addGuess(), getRow(), gameWindow), testFinalGuess(guesses, guessButton, guessBox)])
+    guessButton = tk.Button(gameWindow, text='SUBMIT', command = lambda: [testGuess(guessBox.get().lower(), word, addGuess(), getRow(), gameWindow)])
     guessButton.grid(row = 2, column = 7)
 
 
