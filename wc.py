@@ -97,23 +97,53 @@ def play():
         global guesses
         guesses = guesses + 1
         return guesses
+    
+    def getRow():
+        row = []
+        if guesses == 1:
+            row.append(r0c0)
+            row.append(r0c1)
+            row.append(r0c2)
+            row.append(r0c3)
+            row.append(r0c4)
+        elif guesses == 2:
+            row.append(r1c0)
+            row.append(r1c1)
+            row.append(r1c2)
+            row.append(r1c3)
+            row.append(r1c4)
+        elif guesses == 3:
+            row.append(r2c0)
+            row.append(r2c1)
+            row.append(r2c2)
+            row.append(r2c3)
+            row.append(r2c4)
+        elif guesses == 4:
+            row.append(r3c0)
+            row.append(r3c1)
+            row.append(r3c2)
+            row.append(r3c3)
+            row.append(r3c4)
+        elif guesses == 5:
+            row.append(r4c0)
+            row.append(r4c1)
+            row.append(r4c2)
+            row.append(r4c3)
+            row.append(r4c4)
+        return row
 
-    def testGuess(guess, word, guesses):
+    def testGuess(guess, word, guesses, row):
         guessList = list(guess)
         wordList = list(word)
+        #create list for 
         for x in range (0, 5):
-            if guesses == 1:
-                if guessList[x] == wordList[x]:
-                    if x == 0:
-                        r0c0.configure(bg='green')
-                    if x == 1:
-                        r0c1.configure(bg='green')
-                    if x == 2:
-                        r0c2.configure(bg='green')
-                    if x == 3:
-                        r0c3.configure(bg='green')
-                    if x == 4:
-                        r0c4.configure(bg='green')
+            #test for matches
+            if guessList[x] == wordList[x]:
+                row[x].configure(bg='green')
+            #test for yellows
+            elif guessList[x] in wordList:
+                row[x].configure(bg='yellow')
+      
             
 
     
@@ -125,7 +155,7 @@ def play():
     guessBox = tk.Entry(gameWindow)
     guessBox.grid(row=1, column=7)
     print(guesses)
-    guessButton = tk.Button(gameWindow, text='SUBMIT', command = lambda: [testGuess(guessBox.get().lower(), word, addGuess())])
+    guessButton = tk.Button(gameWindow, text='SUBMIT', command = lambda: [testGuess(guessBox.get().lower(), word, addGuess(), getRow())])
     guessButton.grid(row = 2, column = 7)
 
 
