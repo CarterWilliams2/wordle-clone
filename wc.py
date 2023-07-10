@@ -132,10 +132,9 @@ def play():
             row.append(r4c4)
         return row
 
-    def testGuess(guess, word, guesses, row):
+    def testGuess(guess, word, guesses, row, gameWindow):
         guessList = list(guess)
         wordList = list(word)
-        #create list for 
         for x in range (0, 5):
             #test for matches
             if guessList[x] == wordList[x]:
@@ -143,7 +142,19 @@ def play():
             #test for yellows
             elif guessList[x] in wordList:
                 row[x].configure(bg='yellow')
+        if guess == word:
+            #create win label
+            winLabel = tk.Label(gameWindow, text='Good work!')
+            winLabel.grid(row=3, column=7)
+            #create exit button
+            exitButton = tk.Button(gameWindow, text='EXIT', command = gameWindow.destroy)
+            exitButton.grid(row = 4, column = 7)
+
       
+    def testFinalGuess(guesses, guessBox, guessButton):
+        if guesses == 5:
+            guessBox.destroy()
+            guessButton.destory()
             
 
     
@@ -155,7 +166,7 @@ def play():
     guessBox = tk.Entry(gameWindow)
     guessBox.grid(row=1, column=7)
     print(guesses)
-    guessButton = tk.Button(gameWindow, text='SUBMIT', command = lambda: [testGuess(guessBox.get().lower(), word, addGuess(), getRow())])
+    guessButton = tk.Button(gameWindow, text='SUBMIT', command = lambda: [testGuess(guessBox.get().lower(), word, addGuess(), getRow(), gameWindow), testFinalGuess(guesses, guessButton, guessBox)])
     guessButton.grid(row = 2, column = 7)
 
 
